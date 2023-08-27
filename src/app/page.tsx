@@ -1,14 +1,14 @@
-import Image from 'next/image';
-import styles from './page.module.css';
+import Image from 'next/image'
+import styles from './page.module.css'
 
 export default function HomePage() {
   return (
     <main>
       <div className={styles.container}>
         <Image
-          src='/logo.svg'
+          src="/logo.svg"
           className={styles.logo}
-          alt='Logo 이미지'
+          alt="Logo 이미지"
           width={148}
           height={148}
           priority
@@ -24,5 +24,5 @@ export default function HomePage() {
         </button>
       </div>
     </main>
-  );
+  )
 }
