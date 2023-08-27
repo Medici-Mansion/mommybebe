@@ -9,7 +9,7 @@
     "lint": "next lint",
     "db:push": "drizzle-kit push:pg",
     "db:generate": "drizzle-kit generate:pg",
-    "db:drop" :"drizzle-kit drop"
+    "db:drop": "drizzle-kit drop"
   },
   "dependencies": {
     "@chengsokdara/use-whisper": "^0.2.0",

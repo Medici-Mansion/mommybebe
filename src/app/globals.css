@@ -53,5 +53,19 @@ main {
   max-width: 412px;
   width: 100vw;
   margin: 0 auto;
-  background-color: lightblue;
+}
+input {
+  border: 0;
+  -webkit-appearance: none; /* input 기본 외형 삭제 */
+  -moz-appearance: none;
+  appearance: none;
+
+  &[type='file'],
+  &[type='checkbox'] {
+    display: none;
+  }
+
+  &::placeholder {
+    color: 🌈;
+  }
 }
