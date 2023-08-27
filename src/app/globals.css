@@ -48,3 +48,10 @@ ul,
 ol {
   list-style: none;
 }
+
+main {
+  max-width: 412px;
+  width: 100vw;
+  margin: 0 auto;
+  background-color: lightblue;
+}
