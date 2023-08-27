@@ -13,8 +13,7 @@ export function getImageFromDallE(keywords: string[], category?: string) {
             },
             {
               headers: {
-                Authorization:
-                  'Bearer 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',
+                Authorization: `Bearer ${process.env.NEXT_PUBLIC_OPENAI_KEY}`,
               },
             },
           )
