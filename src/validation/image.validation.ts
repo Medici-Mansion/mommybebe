@@ -2,7 +2,7 @@ import * as z from 'zod'
 
 export const postImageBody = z.object({
   categoryName: z.string(),
-  words: z.array(z.string().optional()).length(10, 'too many words'),
+  words: z.array(z.string()).max(10, 'too many words'),
 })
 
 export const insertImage = z.object({

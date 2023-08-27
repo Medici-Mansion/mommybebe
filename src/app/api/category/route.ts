@@ -5,7 +5,11 @@ import { insertCategory } from '@/validation/category.validation'
 import { NextRequest, NextResponse } from 'next/server'
 
 export async function GET(req: NextRequest) {
-  const categories = await db.select().from(Category)
+  const categories = await db
+    .select({
+      name: Category.name,
+    })
+    .from(Category)
 
   return NextResponse.json(handler({ data: categories }))
 }

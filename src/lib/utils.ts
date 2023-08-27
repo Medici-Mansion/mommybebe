@@ -28,7 +28,7 @@ export async function checkAndSafeParseToBody<T extends z.ZodRawShape>(
   if (!validation.success) {
     return {
       validate: validation.success,
-      data: validation.error.name,
+      data: validation.error,
     }
   } else {
     return {
