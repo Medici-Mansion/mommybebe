@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import styles from './page.module.css'
 
 export default function HomePage() {
@@ -13,15 +14,24 @@ export default function HomePage() {
           height={148}
           priority
         />
-        <button className={`${styles.menuButton} ${styles.generate}`}>
-          Generate Words
-        </button>
-        <button className={`${styles.menuButton} ${styles.learning}`}>
-          Word Learning
-        </button>
-        <button className={`${styles.menuButton} ${styles.review}`}>
-          Word Review
-        </button>
+        <Link
+          href="/generate"
+          className={`${styles.menuButton} ${styles.generate}`}
+        >
+          <button>Generate Words</button>
+        </Link>
+        <Link
+          href="/learning"
+          className={`${styles.menuButton} ${styles.learning}`}
+        >
+          <button>Word Learning</button>
+        </Link>
+        <Link
+          href="/review"
+          className={`${styles.menuButton} ${styles.review}`}
+        >
+          <button>Word Review</button>
+        </Link>
       </div>
     </main>
   )
