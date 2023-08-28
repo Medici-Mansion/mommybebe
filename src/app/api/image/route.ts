@@ -11,7 +11,9 @@ export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url)
     const category = searchParams.get('category') || ''
-    const { rows } = await db.execute(sql`
+    const foundCategoryWithRelationImages =
+      (
+        await db.execute(sql`
   select 
     *
     ,
@@ -48,8 +50,8 @@ export async function GET(req: NextRequest) {
       where
         "image_with_rownum".ROWNUM = 1) images)
     from category c  where c.name = ${category} limit 1`)
-
-    return NextResponse.json(handler({ data: rows }))
+      )?.rows?.[0] || undefined
+    return NextResponse.json(handler({ data: foundCategoryWithRelationImages }))
   } catch (err) {
     console.error(err)
     return NextResponse.json(
