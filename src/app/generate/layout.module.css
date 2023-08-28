@@ -5,28 +5,3 @@
   flex-direction: column;
   justify-content: center;
 }
-
-.container {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: calc(100vh - 50px - 100px); /* 버튼 높이, 하단에서의 거리 뺌 */
-}
-
-.title {
-  font-size: 1.75rem;
-  font-style: normal;
-  font-weight: 400;
-  text-align: center;
-  margin-top: 3.7%;
-  margin-bottom: 12%;
-  height: 60px;
-}
-
-.button {
-  width: 200px;
-  height: 50px;
-  background-color: lightcoral;
-  align-self: center;
-}

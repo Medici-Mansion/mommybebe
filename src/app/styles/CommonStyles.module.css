@@ -1,0 +1,49 @@
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: calc(100vh - 50px - 100px); /* 버튼 높이, 하단에서의 거리 뺌 */
+}
+
+.title {
+  font-size: 1.75rem;
+  font-style: normal;
+  font-weight: 400;
+  text-align: center;
+  margin-top: 3.7%;
+  margin-bottom: 12%;
+  height: 60px;
+}
+
+.nextBtn {
+  width: 334px;
+  height: 64px;
+  border-radius: 16px;
+  background: #ff8d01;
+  align-self: center;
+  color: #fff;
+  font-size: 28px;
+  font-weight: 400;
+}
+
+.inputContainer {
+  width: 330px;
+  height: 90px;
+  border-radius: 16px;
+  border: 2px solid #e1e1e1;
+  background: #fff;
+  padding: 30px 20px;
+}
+
+.input {
+  width: 100%;
+  font-size: 48px;
+  font-weight: 400;
+  width: 330px;
+  height: 90px;
+  border-radius: 16px;
+  border: 2px solid #e1e1e1;
+  background: #fff;
+  padding: 30px 20px;
+}
