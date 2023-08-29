@@ -14,7 +14,7 @@ const CategoryForm = () => {
     router.push(`/generate/${category}`)
   }
   return (
-    <form className={styles.container} onSubmit={handleSubmit(onValid)}>
+    <form className={styles.wrapper} onSubmit={handleSubmit(onValid)}>
       <div className={styles.container}>
         <h1 className={styles.title}>Enter category</h1>
         <input

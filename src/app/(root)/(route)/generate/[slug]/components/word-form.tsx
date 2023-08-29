@@ -13,6 +13,8 @@ interface WordFormProps {
   defaultValues?: Partial<(typeof postImageBody)['_input']>
 }
 
+const MAX_WORD_COUNT = 5
+
 const WordForm = ({ defaultValues }: WordFormProps) => {
   const isDeleted = useRef(false)
   const [wordCount, setWordCount] = useState(1)
@@ -53,7 +55,7 @@ const WordForm = ({ defaultValues }: WordFormProps) => {
                   placeholder="Enter a word"
                   onBlur={(event) => {
                     if (isDeleted.current) return
-                    if (wordCount < 10 && count === wordCount - 1) {
+                    if (wordCount < MAX_WORD_COUNT && count === wordCount - 1) {
                       const { words } = getValues()
                       if (words.filter((item) => !!item).length === wordCount)
                         setWordCount((prev) => prev + 1)
