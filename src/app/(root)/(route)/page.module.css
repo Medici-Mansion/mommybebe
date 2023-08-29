@@ -5,6 +5,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: lightblue;
 }
 
 .logo {
@@ -13,6 +14,8 @@
 }
 
 .menuButton {
+  display: flex;
+  justify-content: center;
   width: 83.2%;
   height: 12.3%;
   border-radius: 1rem;

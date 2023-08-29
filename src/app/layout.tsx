@@ -9,8 +9,8 @@ const inter = Concert_One({
 })
 
 export const metadata: Metadata = {
-  title: 'Mommybebe',
-  description: 'Mommybebe English Education Service',
+  title: 'Sullivan',
+  description: 'AI Word Card Game for Kids with Open AI',
 }
 
 export default function RootLayout({
