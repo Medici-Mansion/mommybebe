@@ -8,7 +8,7 @@ type Props = {
 
 export function generateMetadata({ params }: Props) {
   return {
-    title: `Words in ${params.slug} Category`,
+    description: `Words in ${params.slug} Category`,
   }
 }
 
