@@ -1,4 +1,5 @@
-import styles from '../../styles/CommonStyles.module.css'
+import styles from '@/app/styles/CommonStyles.module.css'
+import WordForm from './components/word-form'
 
 type Props = {
   params: {
@@ -12,8 +13,8 @@ const WordPage = ({ params }: Props) => {
       <div className={styles.container}>
         <h1 className={styles.title}>Enter category</h1>
         <h1>{params.slug} 입력한 카테고리</h1>
+        <WordForm defaultValues={{ categoryName: params.slug }} />
       </div>
-      <button className={styles.nextBtn}>Next</button>
     </>
   )
 }

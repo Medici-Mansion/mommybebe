@@ -1,15 +1,7 @@
-import styles from '../styles/CommonStyles.module.css'
+import CategoryForm from './components/category-form'
 
 const GeneratePage = () => {
-  return (
-    <>
-      <div className={styles.container}>
-        <h1 className={styles.title}>Enter category</h1>
-        <input type="text" className={styles.input} placeholder="Animal" />
-      </div>
-      <button className={styles.nextBtn}>Next</button>
-    </>
-  )
+  return <CategoryForm />
 }
 
 export default GeneratePage
