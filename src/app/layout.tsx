@@ -1,3 +1,4 @@
+import QueryProvier from '@/components/query-provier'
 import './globals.css'
 import type { Metadata } from 'next'
 import { Concert_One } from 'next/font/google'
@@ -19,7 +20,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <QueryProvier>{children}</QueryProvier>
+      </body>
     </html>
   )
 }

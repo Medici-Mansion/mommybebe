@@ -4,7 +4,7 @@ import { CoreModel } from './core.model'
 import { Image } from './image.model'
 export const Category = pgTable('category', {
   ...CoreModel,
-  name: text('image').notNull().unique(),
+  name: text('name').notNull().unique(),
 })
 
 export const CategoryRelations = relations(Category, ({ many }) => ({

@@ -13,7 +13,7 @@ export function getImageFromDallE(keywords: string[], category?: string) {
             },
             {
               headers: {
-                Authorization: `Bearer ${process.env.NEXT_PUBLIC_OPENAI_KEY}`,
+                Authorization: `Bearer ${process.env.OPENAI_KEY}`,
               },
             },
           )

@@ -1,4 +1,4 @@
-import { pgTable, text } from 'drizzle-orm/pg-core'
+import { pgTable, text, uuid } from 'drizzle-orm/pg-core'
 import { relations } from 'drizzle-orm'
 import { CoreModel } from './core.model'
 import { Category } from './category.model'
@@ -7,7 +7,7 @@ export const Image = pgTable('image', {
   word: text('word').notNull(),
   originalUrl: text('original_url').notNull(),
   reviewUrl: text('review_url'),
-  categoryId: text('category_id'),
+  categoryId: uuid('category_id'),
 })
 
 export const ImageRelations = relations(Image, ({ one }) => ({

@@ -10,7 +10,7 @@ interface ResponseHandler<T = unknown> {
 
 export function handler({
   ok,
-  data,
+  data = null,
   error = null,
 }: ResponseArgs): ResponseHandler<typeof data> {
   return {
