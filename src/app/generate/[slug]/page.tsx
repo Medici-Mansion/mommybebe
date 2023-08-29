@@ -44,7 +44,9 @@ const WordPage = ({ params }: Props) => {
           placeholder="Enter a word"
         />
       </div>
-      <button className={styles.nextBtn}>Next</button>
+      <div className={styles.nextBtn}>
+        <button>Next</button>
+      </div>
     </>
   )
 }
