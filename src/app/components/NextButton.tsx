@@ -1,7 +1,9 @@
-'use client'
+type NextButtonProps = {
+  onSave: () => void
+}
 
-const NextButton = () => {
-  return <button>Next</button>
+const NextButton = ({ onSave }: NextButtonProps) => {
+  return <button onClick={onSave}>Next</button>
 }
 
 export default NextButton

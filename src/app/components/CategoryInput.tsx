@@ -1,10 +1,11 @@
-'use client'
-import { useState } from 'react'
 import styles from '../styles/CommonStyles.module.css'
 
-const CategoryInput = () => {
-  const [category, setCategory] = useState('')
+type CategoryInputProps = {
+  category: string
+  setCategory: React.Dispatch<React.SetStateAction<string>>
+}
 
+const CategoryInput = ({ category, setCategory }: CategoryInputProps) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCategory(e.target.value)
   }
