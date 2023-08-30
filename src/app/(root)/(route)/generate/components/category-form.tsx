@@ -13,41 +13,48 @@ interface CategoryInput {
 
 const CategoryForm = () => {
   const router = useRouter()
-  const { register, handleSubmit } = useForm<CategoryInput>()
-  const onValid = ({ category }: CategoryInput) => {
-    router.push(`/generate/${category}`)
-  }
+  const { register, handleSubmit, setError } = useForm<CategoryInput>()
 
-  const { data } = useQuery(CategoryQueries.queries.getCategories)
-
-  data?.data
-  console.log('!!', data?.data)
-
-  useEffect(() => {
-    const postImage = async () => {
-      const data = await instance.post('/api/image', {
-        categoryName: 'Animal',
-        words: ['monkey', 'pig', 'cat', 'dog', 'rabbit'],
+  const onValid = async ({ category }: CategoryInput) => {
+    try {
+      const response = await instance.post('/api/category', {
+        name: category,
       })
-      console.log(data)
+      router.push(`/generate/${category}`)
+      console.log('API Response:', response.data)
+    } catch (error) {
+      console.error('API Error:', error)
+      setError('category', {
+        type: 'required',
+        message: 'Write category',
+      })
     }
-    postImage()
-  }, [])
+  }
 
   return (
     <form className={styles.wrapper} onSubmit={handleSubmit(onValid)}>
       <div className={styles.container}>
-        <h1 className={styles.title}>Enter category</h1>
-        <input
-          type="text"
-          className={styles.input}
-          placeholder="Animal"
-          {...register('category', {
-            required: 'Please Enter category.',
-          })}
-        />
+        <h1>Enter category</h1>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            flexGrow: ' 1',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}
+        >
+          <input
+            type="text"
+            className={styles.input}
+            placeholder="Animal"
+            {...register('category', {
+              required: 'Please Enter category.',
+            })}
+          />
+          <button className={styles.nextBtn}>Next</button>
+        </div>
       </div>
-      <button className={styles.nextBtn}>Next</button>
     </form>
   )
 }

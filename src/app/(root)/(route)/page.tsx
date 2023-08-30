@@ -9,7 +9,7 @@ export default function HomePage() {
       <div className={styles.container}>
         <VoiceTest />
         <Image
-          src="/logo.svg"
+          src="/sullivanLogo.svg"
           className={styles.logo}
           alt="Logo 이미지"
           width={148}

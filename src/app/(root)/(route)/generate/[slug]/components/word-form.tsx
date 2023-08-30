@@ -8,6 +8,8 @@ import { useForm } from 'react-hook-form'
 import * as z from 'zod'
 import { AnimatePresence, motion } from 'framer-motion'
 import { XCircle } from 'lucide-react'
+import { useQuery } from '@tanstack/react-query'
+import CategoryQueries from '@/service/category/query'
 
 interface WordFormProps {
   defaultValues?: Partial<(typeof postImageBody)['_input']>
@@ -49,10 +51,20 @@ const WordForm = ({ defaultValues }: WordFormProps) => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
+                style={{
+                  width: '330px',
+                  height: '90px',
+                  borderRadius: '1rem',
+                  border: '2px solid #e1e1e1',
+                  fontSize: '48px',
+                }}
               >
                 <input
                   {...field}
                   placeholder="Enter a word"
+                  style={{
+                    maxWidth: 'fit-content',
+                  }}
                   onBlur={(event) => {
                     if (isDeleted.current) return
                     if (wordCount < MAX_WORD_COUNT && count === wordCount - 1) {
