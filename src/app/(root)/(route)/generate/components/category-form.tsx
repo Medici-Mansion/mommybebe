@@ -1,6 +1,10 @@
 'use client'
 import styles from '@/app/styles/CommonStyles.module.css'
+import { instance } from '@/service'
+import CategoryQueries from '@/service/category/query'
+import { useQueries, useQuery } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
 interface CategoryInput {
@@ -13,6 +17,23 @@ const CategoryForm = () => {
   const onValid = ({ category }: CategoryInput) => {
     router.push(`/generate/${category}`)
   }
+
+  const { data } = useQuery(CategoryQueries.queries.getCategories)
+
+  data?.data
+  console.log('!!', data?.data)
+
+  useEffect(() => {
+    const postImage = async () => {
+      const data = await instance.post('/api/image', {
+        categoryName: 'Animal',
+        words: ['monkey', 'pig', 'cat', 'dog', 'rabbit'],
+      })
+      console.log(data)
+    }
+    postImage()
+  }, [])
+
   return (
     <form className={styles.wrapper} onSubmit={handleSubmit(onValid)}>
       <div className={styles.container}>
