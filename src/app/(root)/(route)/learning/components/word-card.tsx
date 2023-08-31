@@ -21,10 +21,10 @@ const WordCard = ({ onWordChange }: WordCardProps) => {
 
   useEffect(() => {
     const getImage = async () => {
-      const data = await instance.get('/api/image?category=Animal', {})
-      console.log(data)
-      setData(data)
-      onWordChange(data?.data.data.name)
+      const response = await instance.get('/api/image?category=Animal', {})
+      console.log(response)
+      setData(response)
+      onWordChange(response?.data.data.name)
     }
     getImage()
   }, [])
