@@ -45,6 +45,17 @@
   transition: width 0.3s ease-out;
 }
 
+/* .speaker {
+  width: 100px;
+  height: 100px;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.1);
+} */
+
 .speaker {
   width: 100px;
   height: 100px;
@@ -54,4 +65,10 @@
   align-items: center;
   border-radius: 50px;
   box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.1);
+  transition: border 0.3s ease-out;
+}
+
+/* 스피커가 클릭됐을 때의 테두리 스타일 */
+.speakerClicked {
+  border: 7px solid #ff8d01;
 }

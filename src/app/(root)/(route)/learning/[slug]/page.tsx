@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation'
 import WordCard from '../components/word-card'
 import styles from './page.module.css'
 import { useState } from 'react'
+import useSpeak from '@/hooks/use-speak'
 
 type Props = {
   params: {
@@ -13,7 +14,17 @@ type Props = {
 
 const WordCardpage = ({ params }: Props) => {
   const [progress, setProgress] = useState(1)
+  const [isSpeakerClicked, setIsSpeakerClicked] = useState(false)
+  const [currentWord, setCurrentWord] = useState('')
+
   const router = useRouter()
+
+  // 스피커 코드
+  const { isReady, speak } = useSpeak({
+    defaultVoice: (voices) => {
+      return voices.get('en-US')?.[28]
+    },
+  })
 
   const handleNextClick = () => {
     if (progress < 5) {
@@ -22,6 +33,13 @@ const WordCardpage = ({ params }: Props) => {
 
     if (progress === 5) {
       router.push(`/`)
+    }
+  }
+
+  const handleSpeak = () => {
+    if (isReady) {
+      speak(currentWord, { rate: 0.8 })
+      setIsSpeakerClicked(true)
     }
   }
 
@@ -39,9 +57,14 @@ const WordCardpage = ({ params }: Props) => {
         </div>
       </div>
       <div className={styles.wordCardWrapper}>
-        <WordCard />
+        <WordCard onWordChange={setCurrentWord} />
       </div>
-      <div className={styles.speaker}>
+      <div
+        className={`${styles.speaker} ${
+          isSpeakerClicked ? styles.speakerClicked : ''
+        }`}
+        onClick={handleSpeak}
+      >
         <Image src="/speaker.svg" width={65} height={65} alt="스피커" />
       </div>
       <button
