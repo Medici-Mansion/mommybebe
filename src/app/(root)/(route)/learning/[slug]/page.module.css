@@ -9,6 +9,7 @@
   font-weight: 400;
   color: #ff8d01;
   text-align: center;
+  margin-bottom: 2.5rem;
 }
 
 .wordCardWrapper {
@@ -16,11 +17,13 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  /* background-color: lightblue; */
 }
 
-.progressBar {
+.progressBarContainer {
   display: flex;
-  gap: 5px;
+  justify-content: center;
+  margin-bottom: 2.125rem;
 }
 
 .progressBar {
@@ -35,6 +38,6 @@
   height: 18px;
   width: 0;
   border-radius: 100px;
-  background-color: #ff8d01;
+  background-color: #ffd200;
   transition: width 0.3s ease-out;
 }

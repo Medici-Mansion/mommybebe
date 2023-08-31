@@ -29,17 +29,20 @@ const WordCardpage = ({ params }: Props) => {
     <div className={styles.cardContainer}>
       <div>
         <h1 className={styles.categoryTitle}>{params.slug}</h1>
-        <div className={styles.progressBar}>
-          <div
-            style={{ width: `${68.6 * progress}px` }}
-            className={styles.progressFill}
-          ></div>
+        <div className={styles.progressBarContainer}>
+          <div className={styles.progressBar}>
+            <div
+              style={{ width: `${68.6 * progress}px` }}
+              className={styles.progressFill}
+            ></div>
+          </div>
         </div>
       </div>
       <div className={styles.wordCardWrapper}>
         <WordCard />
         <button
           style={{
+            marginTop: '20px',
             backgroundColor: 'greenyellow',
           }}
           onClick={handleNextClick}
