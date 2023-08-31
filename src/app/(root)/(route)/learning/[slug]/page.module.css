@@ -1,0 +1,74 @@
+.cardContainer {
+  height: 100vh;
+  background-color: #fff9e1;
+  padding: 3.6vh 0vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.categoryTitle {
+  font-size: 2.25rem;
+  font-weight: 400;
+  color: #ff8d01;
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.wordCardWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.progressBarContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2.125rem;
+}
+
+.progressBar {
+  width: 343px;
+  height: 18px;
+  border-radius: 100px;
+  background: #fff;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 18px;
+  width: 0;
+  border-radius: 100px;
+  background-color: #ffd200;
+  transition: width 0.3s ease-out;
+}
+
+/* .speaker {
+  width: 100px;
+  height: 100px;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.1);
+} */
+
+.speaker {
+  width: 100px;
+  height: 100px;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.1);
+  transition: border 0.3s ease-out;
+}
+
+/* 스피커가 클릭됐을 때의 테두리 스타일 */
+.speakerClicked {
+  border: 7px solid #ff8d01;
+}

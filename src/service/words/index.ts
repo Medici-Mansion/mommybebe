@@ -1,6 +1,6 @@
-import WrodsQueries from './query'
-import WrodsService from './service'
+import WordsQueries from './query'
+import WordsService from './service'
 
-const WordsApi = { WrodsQueries, WrodsService }
+const WordsApi = { WordsQueries, WordsService }
 
 export default WordsApi

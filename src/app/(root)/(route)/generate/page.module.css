@@ -16,9 +16,6 @@
   font-style: normal;
   font-weight: 400;
   text-align: center;
-  margin-top: 3.7%;
-  margin-bottom: 12%;
-  height: 60px;
 }
 
 .input {
@@ -26,7 +23,7 @@
   height: 11%;
   border-radius: 1rem;
   border: 0.125rem solid #e1e1e1;
-  background: #fff;
+  background-color: #fff;
   padding: 1.25rem 1.875rem;
   font-size: 3rem;
   margin-bottom: 100%;
