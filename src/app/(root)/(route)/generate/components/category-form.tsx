@@ -32,30 +32,88 @@ const CategoryForm = () => {
   }
 
   return (
-    <form className={styles.wrapper} onSubmit={handleSubmit(onValid)}>
-      <div className={styles.container}>
-        <h1>Enter category</h1>
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            flexGrow: ' 1',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-          }}
-        >
-          <input
-            type="text"
-            className={styles.input}
-            placeholder="Animal"
-            {...register('category', {
-              required: 'Please Enter category.',
-            })}
-          />
-          <button className={styles.nextBtn}>Next</button>
+    <div
+      style={{
+        backgroundColor: '#f9eaf9;',
+        padding: '3.6vh 0vh',
+        height: '100vh',
+      }}
+    >
+      <form
+        style={
+          {
+            // backgroundColor: 'ligtpink',
+          }
+        }
+        onSubmit={handleSubmit(onValid)}
+      >
+        <div>
+          <div
+            style={
+              {
+                // backgroundColor: 'yellowgreen',
+                // height: '16vh',
+              }
+            }
+          >
+            <h1
+              style={{
+                fontSize: '1.8rem',
+                fontWeight: '400',
+                color: '#A5A5A5',
+                textAlign: 'center',
+              }}
+            >
+              Generate words
+            </h1>
+            <h1
+              style={{
+                fontSize: '3rem',
+                fontWeight: '400',
+                color: '#D770D7',
+                textAlign: 'center',
+              }}
+            >
+              Enter category
+            </h1>
+          </div>
+          <div
+            // style={{
+            //   display: 'flex',
+            //   flexDirection: 'column',
+            //   flexGrow: ' 1',
+            //   justifyContent: 'space-between',
+            //   alignItems: 'center',
+            // }}
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              // backgroundColor: 'black',
+            }}
+          >
+            <input
+              type="text"
+              placeholder="Animal"
+              {...register('category', {
+                required: 'Please Enter category.',
+              })}
+              style={{
+                width: '88%',
+                height: '10%',
+                borderRadius: '1rem',
+                border: '0.125rem solid #e1e1e1',
+                backgroundColor: '#fff',
+                padding: '1.25rem 1.25rem',
+                fontSize: '3rem',
+                marginBottom: '442px',
+              }}
+            />
+            <button className={styles.nextBtn}>Next</button>
+          </div>
         </div>
-      </div>
-    </form>
+      </form>
+    </div>
   )
 }
 

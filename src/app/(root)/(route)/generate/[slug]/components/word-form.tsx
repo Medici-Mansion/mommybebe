@@ -10,6 +10,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { XCircle } from 'lucide-react'
 import { useQuery } from '@tanstack/react-query'
 import CategoryQueries from '@/service/category/query'
+import { useRouter } from 'next/navigation'
 
 interface WordFormProps {
   defaultValues?: Partial<(typeof postImageBody)['_input']>
@@ -18,6 +19,7 @@ interface WordFormProps {
 const MAX_WORD_COUNT = 5
 
 const WordForm = ({ defaultValues }: WordFormProps) => {
+  const router = useRouter()
   const isDeleted = useRef(false)
   const [wordCount, setWordCount] = useState(1)
   const { handleSubmit, register, getValues, setFocus, setValue } = useForm<
@@ -39,60 +41,52 @@ const WordForm = ({ defaultValues }: WordFormProps) => {
   }, [setFocus, wordCount])
 
   return (
-    <form onSubmit={handleSubmit(onValid)} className={classNames.form}>
-      <div className={classNames.words_wrapper}>
-        <AnimatePresence>
-          {[...Array(wordCount).keys()].map((count) => {
-            const { onBlur, ...field } = register(`words.${count}`)
-            return (
-              <motion.div
-                key={count}
-                className={classNames.input_wrapper}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                style={{
-                  width: '330px',
-                  height: '90px',
-                  borderRadius: '1rem',
-                  border: '2px solid #e1e1e1',
-                  fontSize: '48px',
+    <form onSubmit={handleSubmit(onValid)}>
+      <div>
+        {Array.from({ length: 5 }, (_, count) => {
+          const { onBlur, ...field } = register(`words.${count}`)
+          return (
+            <div
+              key={count}
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                // backgroundColor: 'black',
+              }}
+            >
+              <input
+                {...field}
+                placeholder="Enter a word"
+                onBlur={(event) => {
+                  if (isDeleted.current) return
+                  onBlur(event)
                 }}
-              >
-                <input
-                  {...field}
-                  placeholder="Enter a word"
-                  style={{
-                    maxWidth: 'fit-content',
-                  }}
-                  onBlur={(event) => {
-                    if (isDeleted.current) return
-                    if (wordCount < MAX_WORD_COUNT && count === wordCount - 1) {
-                      const { words } = getValues()
-                      if (words.filter((item) => !!item).length === wordCount)
-                        setWordCount((prev) => prev + 1)
-                    } else {
-                      onBlur(event)
-                    }
-                  }}
-                />
-                <button
-                  onMouseEnter={() => (isDeleted.current = true)}
-                  onMouseLeave={() => (isDeleted.current = false)}
-                  onClick={() => {
-                    setValue(`words.${count}`, '')
-                    setWordCount((prev) => prev - 1)
-                  }}
-                  style={wordCount > 1 ? {} : { visibility: 'hidden' }}
-                >
-                  <XCircle />
-                </button>
-              </motion.div>
-            )
-          })}
-        </AnimatePresence>
+                style={{
+                  width: '88%',
+                  height: '10%',
+                  borderRadius: '1rem',
+                  border: '0.125rem solid #e1e1e1',
+                  backgroundColor: '#fff',
+                  padding: '1.25rem 1.25rem',
+                  fontSize: '3rem',
+                  marginBottom: '10px',
+                }}
+              />
+            </div>
+          )
+        })}
       </div>
-      <button className={styles.nextBtn}>Next</button>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          // backgroundColor: 'black',
+        }}
+      >
+        <button className={styles.nextBtn}>Next</button>
+      </div>
     </form>
   )
 }
