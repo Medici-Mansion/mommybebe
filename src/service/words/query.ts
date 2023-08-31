@@ -6,7 +6,7 @@ const WordsQueries = {
   queries: {
     getCategories(category: string) {
       return {
-        queryKey: ['categories'],
+        queryKey: ['categories', category],
         //@ts-ignore
         queryFn: () => WordsService.getImageByCategory(category),
       } satisfies QueryType<getImageByCategoryResponse>

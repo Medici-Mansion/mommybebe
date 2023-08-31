@@ -7,42 +7,33 @@ import { useEffect, useState } from 'react'
 import WordsQueries from '@/service/words/query'
 import { instance } from '@/service'
 import Image from 'next/image'
+import { ImageByCategory } from '@/@types/api'
 
 interface CategoryInput {
   category: string
 }
 
 interface WordCardProps {
-  onWordChange: (word: string) => void
+  image?: ImageByCategory
 }
 
-const WordCard = ({ onWordChange }: WordCardProps) => {
-  const [data, setData] = useState<any>({})
-  // const [name, setName] = useState('')
-
-  useEffect(() => {
-    const getImage = async () => {
-      const response = await instance.get('/api/image?category=Animal', {})
-      console.log(response)
-      setData(response)
-      onWordChange(response?.data?.data.images[1].word)
-    }
-    getImage()
-  }, [onWordChange])
-
-  return (
+const WordCard = ({ image }: WordCardProps) => {
+  return image ? (
     <div className={styles.cardContainer}>
       <div className={styles.card}>
         <Image
-          src={data?.data?.data.images[1].original_url}
+          src={image?.original_url}
           width={334}
           height={310}
+          // TODO: PLACEHOLDER 이미지 찾아야 함
+          // placeholder=''
+          // blurDataURL=''
           alt="이미지"
         />
       </div>
-      <div className={styles.word}>{data?.data?.data.images[1].word}</div>
+      <div className={styles.word}>{image.word}</div>
     </div>
-  )
+  ) : null
 }
 
 export default WordCard
