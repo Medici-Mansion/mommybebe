@@ -1,4 +1,5 @@
 import { Category } from '@/schema/models/category.model'
+import { Image } from '@/schema/models/image.model'
 import { InferSelectModel } from 'drizzle-orm'
 
 interface Response<T> {
@@ -9,4 +10,12 @@ interface Response<T> {
 
 export type GetCategoriesResponse = Response<
   Pick<InferSelectModel<typeof Category, { dbColumnNames: true }>, 'name'>[]
+>
+export type getImageByCategoryResponse = Response<
+  InferSelectModel<typeof Category, { dbColumnNames: true }> & {
+    images: Omit<
+      InferSelectModel<typeof Image, { dbColumnNames: true }>,
+      'category_id'
+    >[]
+  }
 >

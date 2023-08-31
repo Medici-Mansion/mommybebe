@@ -6,6 +6,7 @@ import { Category } from '@/schema/models/category.model'
 import { Image } from '@/schema/models/image.model'
 import { postImageBody } from '@/validation/image.validation'
 import { NextRequest, NextResponse } from 'next/server'
+import { uploadImage } from '@/external/upload-image'
 
 export async function GET(req: NextRequest) {
   try {
@@ -19,7 +20,7 @@ export async function GET(req: NextRequest) {
     ,
     (select
       coalesce(json_agg(jsonb_build_object(
-          'id,',"images"."id", 
+          'id',"images"."id", 
       'createdAt',"images"."createdAt",
       'word',"images"."word",
       'original_url',"images"."original_url",
@@ -48,7 +49,7 @@ export async function GET(req: NextRequest) {
           "i"."review_url" is null
           and "i".category_id = c.id) as "image_with_rownum"
       where
-        "image_with_rownum".ROWNUM = 1) images)
+        "image_with_rownum".ROWNUM = 1 limit 5) images)
     from category c  where c.name = ${category} limit 1`)
       )?.rows?.[0] || undefined
     return NextResponse.json(handler({ data: foundCategoryWithRelationImages }))
@@ -91,16 +92,26 @@ export async function POST(req: NextRequest) {
     if (!foundCategory.length) throw Error()
     const response = await getImageFromDallE(words)
 
+    const uploadPromises = response.map((image) => uploadImage(image))
+    const cloudinaryResponse = await Promise.all(uploadPromises)
     await db.insert(Image).values(
-      response.map((item) => ({
+      cloudinaryResponse.map((item) => ({
         word: item.keyword,
         categoryId: foundCategory[0].id,
-        originalUrl: item.url,
+        originalUrl: item.secure_url,
       })),
     )
 
     return NextResponse.json(
-      handler({ data: { category: categoryName, images: response } }),
+      handler({
+        data: {
+          category: categoryName,
+          images: cloudinaryResponse.map((res) => ({
+            keyword: res.keyword,
+            url: res.secure_url,
+          })),
+        },
+      }),
     )
   } catch (err) {
     return NextResponse.json(
