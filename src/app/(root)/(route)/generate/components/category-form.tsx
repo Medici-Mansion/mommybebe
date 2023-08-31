@@ -1,11 +1,8 @@
 'use client'
-import styles from '@/app/styles/CommonStyles.module.css'
 import { instance } from '@/service'
-import CategoryQueries from '@/service/category/query'
-import { useQueries, useQuery } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
-import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
+import styles from './category-form.module.css'
 
 interface CategoryInput {
   category: string
@@ -32,82 +29,21 @@ const CategoryForm = () => {
   }
 
   return (
-    <div
-      style={{
-        backgroundColor: '#f9eaf9;',
-        padding: '3.6vh 0vh',
-        height: '100vh',
-      }}
-    >
-      <form
-        style={
-          {
-            // backgroundColor: 'ligtpink',
-          }
-        }
-        onSubmit={handleSubmit(onValid)}
-      >
+    <div className={styles.formContainer}>
+      <form onSubmit={handleSubmit(onValid)}>
         <div>
-          <div
-            style={
-              {
-                // backgroundColor: 'yellowgreen',
-                // height: '16vh',
-              }
-            }
-          >
-            <h1
-              style={{
-                fontSize: '1.8rem',
-                fontWeight: '400',
-                color: '#A5A5A5',
-                textAlign: 'center',
-              }}
-            >
-              Generate words
-            </h1>
-            <h1
-              style={{
-                fontSize: '3rem',
-                fontWeight: '400',
-                color: '#D770D7',
-                textAlign: 'center',
-              }}
-            >
-              Enter category
-            </h1>
+          <div>
+            <h1 className={styles.title}>Generate words</h1>
+            <h1 className={styles.subtitle}>Enter category</h1>
           </div>
-          <div
-            // style={{
-            //   display: 'flex',
-            //   flexDirection: 'column',
-            //   flexGrow: ' 1',
-            //   justifyContent: 'space-between',
-            //   alignItems: 'center',
-            // }}
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              // backgroundColor: 'black',
-            }}
-          >
+          <div className={styles.inputContainer}>
             <input
               type="text"
               placeholder="Animal"
               {...register('category', {
                 required: 'Please Enter category.',
               })}
-              style={{
-                width: '88%',
-                height: '10%',
-                borderRadius: '1rem',
-                border: '0.125rem solid #e1e1e1',
-                backgroundColor: '#fff',
-                padding: '1.25rem 1.25rem',
-                fontSize: '3rem',
-                marginBottom: '442px',
-              }}
+              className={styles.input}
             />
             <button className={styles.nextBtn}>Next</button>
           </div>
