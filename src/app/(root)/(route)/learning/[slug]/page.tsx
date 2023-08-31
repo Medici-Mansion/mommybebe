@@ -21,7 +21,7 @@ const WordCardpage = ({ params }: Props) => {
     }
 
     if (progress === 5) {
-      router.push(`/scoreboard`)
+      router.push(`/`)
     }
   }
 

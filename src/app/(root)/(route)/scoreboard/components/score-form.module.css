@@ -1,0 +1,17 @@
+.answer {
+  width: 343px;
+  height: 90px;
+  border-radius: 1rem;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: 2px solid #e1e1e1;
+  font-size: 48px;
+  font-weight: 400;
+  margin-bottom: 12px;
+}
+
+/* .answer:last-child {
+  margin-bottom: 0;
+} */

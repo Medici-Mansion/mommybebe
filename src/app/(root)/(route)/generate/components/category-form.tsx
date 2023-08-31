@@ -32,7 +32,11 @@ const CategoryForm = () => {
     <div className={styles.formContainer}>
       <form onSubmit={handleSubmit(onValid)}>
         <div>
-          <div>
+          <div
+            style={{
+              marginBottom: '30px',
+            }}
+          >
             <h1 className={styles.title}>Generate words</h1>
             <h1 className={styles.subtitle}>Enter category</h1>
           </div>

@@ -1,6 +1,5 @@
 'use client'
-import classNames from './word-form.module.scss'
-import styles from '@/app/styles/CommonStyles.module.css'
+import styles from './word-form.module.css'
 import { postImageBody } from '@/validation/image.validation'
 import { zodResolver } from '@hookform/resolvers/zod'
 import React, { useEffect, useRef, useState } from 'react'
@@ -56,18 +55,10 @@ const WordForm = ({ defaultValues }: WordFormProps) => {
   return (
     <form onSubmit={handleSubmit(onValid)}>
       <div>
-        {Array.from({ length: 5 }, (_, count) => {
+        {Array.from({ length: MAX_WORD_COUNT }, (_, count) => {
           const { onBlur, ...field } = register(`words.${count}`)
           return (
-            <div
-              key={count}
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                // backgroundColor: 'black',
-              }}
-            >
+            <div key={count} className={styles.inputWrapper}>
               <input
                 {...field}
                 placeholder="Enter a word"
@@ -75,29 +66,13 @@ const WordForm = ({ defaultValues }: WordFormProps) => {
                   if (isDeleted.current) return
                   onBlur(event)
                 }}
-                style={{
-                  width: '88%',
-                  height: '10%',
-                  borderRadius: '1rem',
-                  border: '0.125rem solid #e1e1e1',
-                  backgroundColor: '#fff',
-                  padding: '1.25rem 1.25rem',
-                  fontSize: '3rem',
-                  marginBottom: '10px',
-                }}
+                className={styles.input}
               />
             </div>
           )
         })}
       </div>
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          // backgroundColor: 'black',
-        }}
-      >
+      <div className={styles.buttonWrapper}>
         <button className={styles.nextBtn}>Next</button>
       </div>
     </form>
