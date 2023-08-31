@@ -2,11 +2,13 @@ import Image from 'next/image'
 import Link from 'next/link'
 import styles from './page.module.css'
 import VoiceTest from '@/app/components/VoiceTest'
+import AnimatedLogo from '@/components/Animated-logo'
 
 export default function HomePage() {
   return (
     <main>
       <div className={styles.container}>
+        <AnimatedLogo />
         <VoiceTest />
         <Image
           src="/logo.svg"
