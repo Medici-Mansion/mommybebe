@@ -11,6 +11,7 @@ import { XCircle } from 'lucide-react'
 import { useQuery } from '@tanstack/react-query'
 import CategoryQueries from '@/service/category/query'
 import { useRouter } from 'next/navigation'
+import { instance } from '@/service'
 
 interface WordFormProps {
   defaultValues?: Partial<(typeof postImageBody)['_input']>
@@ -22,17 +23,29 @@ const WordForm = ({ defaultValues }: WordFormProps) => {
   const router = useRouter()
   const isDeleted = useRef(false)
   const [wordCount, setWordCount] = useState(1)
-  const { handleSubmit, register, getValues, setFocus, setValue } = useForm<
-    (typeof postImageBody)['_input']
-  >({
-    resolver: zodResolver(postImageBody),
-    defaultValues,
-  })
+  const { handleSubmit, register, getValues, setFocus, setValue, setError } =
+    useForm<(typeof postImageBody)['_input']>({
+      resolver: zodResolver(postImageBody),
+      defaultValues,
+    })
 
   const onValid = async (data: z.infer<typeof postImageBody>) => {
     const { categoryName, words } = data
     const filteredWords = words.filter((item) => !!item)
-    console.log(data)
+    // console.log(data)
+    try {
+      const response = await instance.post('api/image', {
+        categoryName: categoryName,
+        words: filteredWords,
+      })
+      console.log('res', response.data)
+      router.push(`/`)
+    } catch (error) {
+      setError('words', {
+        type: 'required',
+        message: 'Write five words',
+      })
+    }
   }
 
   useEffect(() => {
