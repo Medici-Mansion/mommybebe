@@ -6,6 +6,7 @@ import CategoryQueries from '@/service/category/query'
 import { useEffect, useState } from 'react'
 import WordsQueries from '@/service/words/query'
 import { instance } from '@/service'
+import Image from 'next/image'
 
 interface CategoryInput {
   category: string
@@ -27,11 +28,18 @@ const WordCard = ({ onWordChange }: WordCardProps) => {
       onWordChange(response?.data?.data.images[1].word)
     }
     getImage()
-  }, [])
+  }, [onWordChange])
 
   return (
     <div className={styles.cardContainer}>
-      <div className={styles.card}></div>
+      <div className={styles.card}>
+        <Image
+          src={data?.data?.data.images[1].original_url}
+          width={334}
+          height={310}
+          alt="이미지"
+        />
+      </div>
       <div className={styles.word}>{data?.data?.data.images[1].word}</div>
     </div>
   )
