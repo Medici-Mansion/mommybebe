@@ -3,7 +3,9 @@
 import { useQuery } from '@tanstack/react-query'
 import styles from './word-card.module.css'
 import CategoryQueries from '@/service/category/query'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import WordsQueries from '@/service/words/query'
+import { instance } from '@/service'
 
 interface CategoryInput {
   category: string
@@ -14,21 +16,23 @@ interface WordCardProps {
 }
 
 const WordCard = ({ onWordChange }: WordCardProps) => {
-  const { data } = useQuery(CategoryQueries.queries.getCategories)
+  const [data, setData] = useState<any>({})
+  // const [name, setName] = useState('')
 
-  console.log('data!!', data?.data)
-
-  // TODO : 단어 받아오는 useQuery 작성후 위의 카테고리 쿼리랑 교체
   useEffect(() => {
-    if (data?.data) {
-      onWordChange('Dog')
+    const getImage = async () => {
+      const data = await instance.get('/api/image?category=Animal', {})
+      console.log(data)
+      setData(data)
+      onWordChange(data?.data.data.name)
     }
-  }, [data])
+    getImage()
+  }, [])
 
   return (
     <div className={styles.cardContainer}>
       <div className={styles.card}></div>
-      <div className={styles.word}>Dog</div>
+      <div className={styles.word}>{data?.data?.data.name}</div>
     </div>
   )
 }
