@@ -24,7 +24,7 @@ const WordCard = ({ onWordChange }: WordCardProps) => {
       const response = await instance.get('/api/image?category=Animal', {})
       console.log(response)
       setData(response)
-      onWordChange(response?.data.data.name)
+      onWordChange(response?.data?.data.images[1].word)
     }
     getImage()
   }, [])
@@ -32,7 +32,7 @@ const WordCard = ({ onWordChange }: WordCardProps) => {
   return (
     <div className={styles.cardContainer}>
       <div className={styles.card}></div>
-      <div className={styles.word}>{data?.data?.data.name}</div>
+      <div className={styles.word}>{data?.data?.data.images[1].word}</div>
     </div>
   )
 }
