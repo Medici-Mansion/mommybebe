@@ -5,17 +5,17 @@ import { useState } from 'react'
 
 const SelectCategoryForm = () => {
   const router = useRouter()
-  const [selected, setSelected] = useState(false)
+  // const [selected, setSelected] = useState(false)
 
   const handleNextclick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
     router.push(`/learning/animals`)
   }
 
-  const handleSelectClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    console.log('!')
-    setSelected(true)
-  }
+  // const handleSelectClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  //   console.log('!')
+  //   setSelected(true)
+  // }
 
   return (
     <form>
