@@ -10,3 +10,8 @@ export const insertImage = z.object({
   originalUrl: z.string(),
   categoryId: z.string(),
 })
+
+export const completeLearn = z.object({
+  categoryName: z.string(),
+  words: z.array(z.object({ id: z.string(), isCorrect: z.boolean() })),
+})
