@@ -36,12 +36,12 @@ const WordCardpage = ({ params }: Props) => {
     }
   }
 
-  const handleSpeak = () => {
-    if (isReady) {
-      speak(currentWord, { rate: 0.8 })
-      setIsSpeakerClicked(true)
-    }
-  }
+  // const handleSpeak = () => {
+  //   if (isReady) {
+  //     speak(currentWord, { rate: 0.8 })
+  //     setIsSpeakerClicked(true)
+  //   }
+  // }
 
   return (
     <div className={styles.cardContainer}>
@@ -63,7 +63,7 @@ const WordCardpage = ({ params }: Props) => {
         className={`${styles.speaker} ${
           isSpeakerClicked ? styles.speakerClicked : ''
         }`}
-        onClick={handleSpeak}
+        // onClick={handleSpeak}
       >
         <Image src="/speaker.svg" width={65} height={65} alt="스피커" />
       </div>
