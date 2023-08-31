@@ -1,5 +1,5 @@
 'use client'
-
+import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import WordCard from '../components/word-card'
 import styles from './page.module.css'
@@ -40,16 +40,19 @@ const WordCardpage = ({ params }: Props) => {
       </div>
       <div className={styles.wordCardWrapper}>
         <WordCard />
-        <button
-          style={{
-            marginTop: '20px',
-            backgroundColor: 'greenyellow',
-          }}
-          onClick={handleNextClick}
-        >
-          다음 카드로
-        </button>
       </div>
+      <div className={styles.speaker}>
+        <Image src="/speaker.svg" width={65} height={65} alt="스피커" />
+      </div>
+      <button
+        style={{
+          marginTop: '20px',
+          backgroundColor: 'greenyellow',
+        }}
+        onClick={handleNextClick}
+      >
+        다음 카드로
+      </button>
     </div>
   )
 }
