@@ -9,7 +9,7 @@ const SelectCategoryForm = () => {
 
   const handleNextclick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
-    router.push(`/learning/animals`)
+    router.push(`/learning/Animal`)
   }
 
   // const handleSelectClick = (event: React.MouseEvent<HTMLButtonElement>) => {

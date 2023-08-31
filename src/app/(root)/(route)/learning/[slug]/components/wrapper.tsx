@@ -54,7 +54,7 @@ const Wrapper = ({ category }: { category: string }) => {
         </div>
       </div>
       <div className={styles.wordCardWrapper}>
-        <WordCard image={data?.data.images[progress - 1]} />
+        {data?.data && <WordCard image={data?.data.images[progress - 1]} />}
       </div>
       <div
         className={`${styles.speaker} ${
