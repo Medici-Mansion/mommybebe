@@ -1,7 +1,15 @@
+'use client'
 import ScoreForm from './components/score-form'
 import styles from './page.module.css'
+import { useRouter } from 'next/navigation'
 
 const ScoreBoardPage = () => {
+  const router = useRouter()
+
+  const handleNext = () => {
+    router.push(`/`)
+  }
+
   return (
     <div className={styles.scoreBoardContainer}>
       <div
@@ -16,7 +24,9 @@ const ScoreBoardPage = () => {
         <ScoreForm />
       </div>
       <div className={styles.buttonWrapper}>
-        <button className={styles.nextBtn}>Next</button>
+        <button className={styles.nextBtn} onClick={handleNext}>
+          Next
+        </button>
       </div>
     </div>
   )
