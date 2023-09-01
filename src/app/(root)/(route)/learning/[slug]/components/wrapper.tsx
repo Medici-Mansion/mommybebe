@@ -43,7 +43,7 @@ const Wrapper = ({ category }: { category: string }) => {
   return (
     <div className={styles.cardContainer}>
       <div>
-        <h1 className={styles.categoryTitle}>dfsf</h1>
+        <h1 className={styles.categoryTitle}>Animal</h1>
         <div className={styles.progressBarContainer}>
           <div className={styles.progressBar}>
             <div
