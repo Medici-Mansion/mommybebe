@@ -37,7 +37,6 @@ const WordForm = ({ defaultValues }: WordFormProps) => {
         categoryName: categoryName,
         words: filteredWords,
       })
-      console.log('res', response.data)
       router.push(`/`)
     } catch (error) {
       setError('words', {

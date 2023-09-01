@@ -12,5 +12,5 @@ export const uploadImage = async (dallEResponse: DallEResponse) => {
     data,
   )
 
-  return { ...res.data, keyword: dallEResponse.keyword }
+  return { ...dallEResponse, ...res.data }
 }

@@ -13,19 +13,7 @@ const CategoryForm = () => {
   const { register, handleSubmit, setError } = useForm<CategoryInput>()
 
   const onValid = async ({ category }: CategoryInput) => {
-    try {
-      const response = await instance.post('/api/category', {
-        name: category,
-      })
-      router.push(`/generate/${category}`)
-      console.log('API Response:', response.data)
-    } catch (error) {
-      console.error('API Error:', error)
-      setError('category', {
-        type: 'required',
-        message: 'Write category',
-      })
-    }
+    router.push(`/generate/${category}`)
   }
 
   return (

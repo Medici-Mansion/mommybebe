@@ -7,7 +7,7 @@ export default function HomePage() {
   return (
     <main>
       <div className={styles.container}>
-        <VoiceTest />
+        {/* <VoiceTest /> */}
         <Image
           src="/sullivanLogo.svg"
           className={styles.logo}
@@ -29,7 +29,7 @@ export default function HomePage() {
           <button>Word Learning</button>
         </Link>
         <Link
-          href="/review"
+          href="/reviewing"
           className={`${styles.menuButton} ${styles.review}`}
         >
           <button>Word Review</button>
