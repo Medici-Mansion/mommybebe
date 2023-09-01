@@ -8,6 +8,7 @@ import styles from './wrapper.module.css'
 import WordsApi from '@/service/words'
 import TestCard from '../../components/test-card'
 import { useWhisper } from '@chengsokdara/use-whisper'
+import { useStore } from '@/store/store'
 
 const Wrapper = ({ category }: { category: string }) => {
   const router = useRouter()
@@ -16,6 +17,7 @@ const Wrapper = ({ category }: { category: string }) => {
   const [isSpeakerClicked, setIsSpeakerClicked] = useState(false)
   const [timerId, setTimerId] = useState<NodeJS.Timeout | null>(null)
   const [localTranscript, setLocalTranscript] = useState<string | undefined>()
+  const { correctAnswer, setCorrectAnswer } = useStore()
 
   const { data } = useQuery(
     WordsApi.WordsQueries.queries.getCategories(category),
@@ -93,6 +95,12 @@ const Wrapper = ({ category }: { category: string }) => {
     setLocalTranscript(undefined)
   }, [progress])
 
+  useEffect(() => {
+    if (data?.data) {
+      setCorrectAnswer(data?.data.images[progress - 1]?.word)
+    }
+  }, [data, progress, setCorrectAnswer])
+
   return (
     <div className={styles.cardContainer}>
       <div>
@@ -111,7 +119,7 @@ const Wrapper = ({ category }: { category: string }) => {
           <TestCard
             image={data?.data.images[progress - 1]}
             transcript={localTranscript}
-            correctAnswer={data?.data.images[progress - 1]?.word}
+            correctAnswer={correctAnswer}
           />
         )}
       </div>

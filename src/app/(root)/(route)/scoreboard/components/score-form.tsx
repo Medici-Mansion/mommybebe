@@ -5,9 +5,11 @@ import styles from './score-form.module.css'
 import WordsApi from '@/service/words'
 import useSpeak from '@/hooks/use-speak'
 import Image from 'next/image'
+import { useStore } from '@/store/store'
 
 const ScoreForm = () => {
   const [isSpeakerClicked, setIsSpeakerClicked] = useState(false)
+  const { correctAnswer } = useStore()
 
   // 스피커 코드
   const { isReady, speak, getVoicesByLang } = useSpeak({
@@ -38,7 +40,11 @@ const ScoreForm = () => {
           </button>
           <p className={styles.answer}>{image.word}</p>
           <div>
-            <Image src="/correct.svg" width={48} height={48} alt="정답" />
+            {image.word === correctAnswer ? (
+              <Image src="/correct.svg" width={48} height={48} alt="정답" />
+            ) : (
+              <Image src="/wrong.svg" width={48} height={48} alt="오답" />
+            )}
           </div>
         </div>
       ))}
