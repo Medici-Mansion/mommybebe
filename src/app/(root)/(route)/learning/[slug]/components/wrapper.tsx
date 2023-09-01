@@ -1,11 +1,12 @@
 'use client'
-import Image from 'next/image'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { useQuery } from '@tanstack/react-query'
+import Image from 'next/image'
+
 import WordCard from '../../components/word-card'
 import styles from './wrapper.module.css'
-import { useState } from 'react'
 import useSpeak from '@/hooks/use-speak'
-import { useQuery } from '@tanstack/react-query'
 import WordsApi from '@/service/words'
 
 const Wrapper = ({ category }: { category: string }) => {
@@ -39,6 +40,11 @@ const Wrapper = ({ category }: { category: string }) => {
       setIsSpeakerClicked(true)
     }
   }
+
+  useEffect(() => {
+    // progress가 변할 때마다 isSpeakerClicked 초기화
+    setIsSpeakerClicked(false)
+  }, [progress])
 
   return (
     <div className={styles.cardContainer}>
