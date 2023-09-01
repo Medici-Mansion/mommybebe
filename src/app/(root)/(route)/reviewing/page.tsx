@@ -1,7 +1,5 @@
 'use client'
 import Image from 'next/image'
-
-import WordCard from '../learning/components/word-card'
 import styles from './page.module.css'
 import { useState } from 'react'
 

@@ -1,7 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import styles from './page.module.css'
-import VoiceTest from '@/app/components/VoiceTest'
 
 export default function HomePage() {
   return (
