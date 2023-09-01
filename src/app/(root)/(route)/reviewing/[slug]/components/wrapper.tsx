@@ -111,6 +111,7 @@ const Wrapper = ({ category }: { category: string }) => {
           <WordCard
             image={data?.data.images[progress - 1]}
             transcript={localTranscript}
+            correctAnswer={data?.data.images[progress - 1]?.word}
           />
         )}
       </div>

@@ -8,9 +8,19 @@ import { ImageByCategory } from '@/@types/api'
 interface WordCardProps {
   image?: ImageByCategory
   transcript?: string
+  correctAnswer?: string
 }
 
-const WordCard = ({ image, transcript }: WordCardProps) => {
+const WordCard = ({ image, transcript, correctAnswer }: WordCardProps) => {
+  let answerStyle = {}
+
+  if (transcript && correctAnswer) {
+    answerStyle =
+      transcript.toLowerCase() === correctAnswer.toLowerCase()
+        ? { color: '#20D96B' }
+        : { color: '#FF3932' }
+  }
+
   return image ? (
     <div className={styles.cardContainer}>
       <div className={styles.card}>
@@ -23,7 +33,9 @@ const WordCard = ({ image, transcript }: WordCardProps) => {
           alt="이미지"
         />
       </div>
-      <div className={styles.word}>{transcript}</div>
+      <div className={styles.word} style={answerStyle}>
+        {transcript}
+      </div>
     </div>
   ) : null
 }
