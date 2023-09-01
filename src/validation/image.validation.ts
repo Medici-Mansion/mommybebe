@@ -10,3 +10,8 @@ export const insertImage = z.object({
   originalUrl: z.string(),
   categoryId: z.string(),
 })
+
+export const variationImage = z.object({
+  categoryName: z.string(),
+  images: z.array(z.string()),
+})
