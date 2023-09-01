@@ -25,9 +25,8 @@ const WordCard = ({ image }: WordCardProps) => {
           src={image?.original_url}
           width={334}
           height={310}
-          // TODO: PLACEHOLDER 이미지 찾아야 함
-          // placeholder=''
-          // blurDataURL=''
+          placeholder="blur"
+          blurDataURL={image?.original_url}
           alt="이미지"
         />
       </div>

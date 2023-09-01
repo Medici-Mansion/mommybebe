@@ -1,32 +1,18 @@
-'use client'
-import Image from 'next/image'
-
-import WordCard from '../learning/components/word-card'
+import SelectCategoryForm from './components/select-form'
 import styles from './page.module.css'
-import { useState } from 'react'
 
-const ReviewingPage = () => {
-  const [progress, setProgress] = useState(1)
-
+const LearningPage = () => {
   return (
-    <div className={styles.reviewContainer}>
+    <div className={styles.learningContainer}>
       <div>
-        <h1 className={styles.reviewTitle}>Animal</h1>
-        <div className={styles.progressBarContainer}>
-          <div className={styles.progressBar}>
-            <div
-              style={{ width: `${68.6 * progress}px` }}
-              className={styles.progressFill}
-            ></div>
-          </div>
-        </div>
+        <h1 className={styles.title}>Word Reviewing</h1>
+        <h1 className={styles.subtitle}>Select a category</h1>
       </div>
-      <div className={styles.wordCardWrapper}>{/* <WordCard /> */}</div>
-      <div className={`${styles.speaker}`}>
-        <Image src="/mic.svg" width={65} height={65} alt="스피커" />
+      <div className={styles.selectFormWrapper}>
+        <SelectCategoryForm />
       </div>
     </div>
   )
 }
 
-export default ReviewingPage
+export default LearningPage
