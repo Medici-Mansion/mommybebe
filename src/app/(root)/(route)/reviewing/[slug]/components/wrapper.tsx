@@ -5,10 +5,8 @@ import { useQuery } from '@tanstack/react-query'
 import Image from 'next/image'
 
 import styles from './wrapper.module.css'
-import useSpeak from '@/hooks/use-speak'
 import WordsApi from '@/service/words'
 import WordCard from '../../components/word-card'
-import Whisper from '@/app/components/Whisper'
 import { useWhisper } from '@chengsokdara/use-whisper'
 
 const Wrapper = ({ category }: { category: string }) => {
@@ -22,6 +20,7 @@ const Wrapper = ({ category }: { category: string }) => {
   const { data } = useQuery(
     WordsApi.WordsQueries.queries.getCategories(category),
   )
+
   const { recording, transcribing, transcript, startRecording, stopRecording } =
     useWhisper({
       apiKey: process.env.NEXT_PUBLIC_OPENAI_KEY,
@@ -76,7 +75,18 @@ const Wrapper = ({ category }: { category: string }) => {
   }, [progress])
 
   useEffect(() => {
-    setLocalTranscript(transcript.text)
+    if (transcript.text) {
+      let finalTranscript = transcript.text
+
+      // 텍스트가 끝에 .으로 나올 때 .을 제거
+      if (finalTranscript.endsWith('.')) {
+        finalTranscript = finalTranscript.slice(0, -1)
+      }
+
+      setLocalTranscript(finalTranscript)
+    } else {
+      setLocalTranscript(undefined)
+    }
   }, [transcript.text])
 
   useEffect(() => {
