@@ -2,7 +2,7 @@
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import WordCard from '../../components/word-card'
-import styles from './page.module.css'
+import styles from './wrapper.module.css'
 import { useState } from 'react'
 import useSpeak from '@/hooks/use-speak'
 import { useQuery } from '@tanstack/react-query'
@@ -56,23 +56,22 @@ const Wrapper = ({ category }: { category: string }) => {
       <div className={styles.wordCardWrapper}>
         {data?.data && <WordCard image={data?.data.images[progress - 1]} />}
       </div>
-      <div
-        className={`${styles.speaker} ${
-          isSpeakerClicked ? styles.speakerClicked : ''
-        }`}
-        onClick={handleSpeak}
-      >
-        <Image src="/speaker.svg" width={65} height={65} alt="스피커" />
+      <div className={styles.buttonContainer}>
+        <div
+          className={`${styles.buttonWrapper} ${
+            isSpeakerClicked ? styles.speakerClicked : ''
+          }`}
+          onClick={handleSpeak}
+        >
+          <Image src="/speaker.svg" width={65} height={65} alt="스피커" />
+        </div>
+        <button
+          className={`${styles.buttonWrapper} ${styles.secondButton}`}
+          onClick={handleNextClick}
+        >
+          <Image src="/Arrow_Right.svg" width={65} height={65} alt="next" />
+        </button>
       </div>
-      <button
-        style={{
-          marginTop: '20px',
-          backgroundColor: 'greenyellow',
-        }}
-        onClick={handleNextClick}
-      >
-        다음 카드로
-      </button>
     </div>
   )
 }
