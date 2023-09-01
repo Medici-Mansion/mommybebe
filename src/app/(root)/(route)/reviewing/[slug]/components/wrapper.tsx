@@ -6,7 +6,7 @@ import Image from 'next/image'
 
 import styles from './wrapper.module.css'
 import WordsApi from '@/service/words'
-import WordCard from '../../components/word-card'
+import TestCard from '../../components/test-card'
 import { useWhisper } from '@chengsokdara/use-whisper'
 
 const Wrapper = ({ category }: { category: string }) => {
@@ -55,7 +55,7 @@ const Wrapper = ({ category }: { category: string }) => {
     }
 
     if (progress === 5) {
-      router.push(`/`)
+      router.push(`/scoreboard`)
     }
   }
 
@@ -108,7 +108,7 @@ const Wrapper = ({ category }: { category: string }) => {
       </div>
       <div className={styles.wordCardWrapper}>
         {data?.data && (
-          <WordCard
+          <TestCard
             image={data?.data.images[progress - 1]}
             transcript={localTranscript}
             correctAnswer={data?.data.images[progress - 1]?.word}

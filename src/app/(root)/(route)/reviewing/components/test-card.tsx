@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 
-import styles from './word-card.module.css'
+import styles from './test-card.module.css'
 import { ImageByCategory } from '@/@types/api'
 
 interface WordCardProps {
@@ -11,7 +11,7 @@ interface WordCardProps {
   correctAnswer?: string
 }
 
-const WordCard = ({ image, transcript, correctAnswer }: WordCardProps) => {
+const TestCard = ({ image, transcript, correctAnswer }: WordCardProps) => {
   let answerStyle = {}
 
   if (transcript && correctAnswer) {
@@ -40,4 +40,4 @@ const WordCard = ({ image, transcript, correctAnswer }: WordCardProps) => {
   ) : null
 }
 
-export default WordCard
+export default TestCard
