@@ -16,7 +16,7 @@ const SelectCategoryForm = () => {
     <form>
       <div className={styles.selectBtnContainer}>
         <div className={styles.flexContainer}>
-          <div className={styles.selectBtn}>Animals</div>
+          <div className={styles.selectBtn}>Animal</div>
           <div className={styles.unselectBtn}>
             <Image src="/Lock.svg" width={32} height={32} alt="lock" />
             <p>Jobs</p>
