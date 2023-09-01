@@ -1,4 +1,16 @@
 import axios from 'axios'
+const WORD_POSITION_KEY = 'WORD_POSITION_KEY'
+
+const PROMPTS = [
+  `art of very very cute and child-friendly illustration of ${WORD_POSITION_KEY}. render on a colourful gradient background.`,
+  `3d art of a very very very cute ${WORD_POSITION_KEY} squishmallow design plush toy. 3d render on a colourful gradient background, deep shadows, studio photography`,
+]
+
+const getRandomPrompt = (word: string) => {
+  const idx = (Math.random() * PROMPTS.length) >> 0
+  PROMPTS[idx].replace(WORD_POSITION_KEY, word)
+}
+
 export function getImageFromDallE(keywords: string[], category?: string) {
   const promiseList = keywords.map((keyword) => {
     return new Promise<DallEResponse>(async (resolve, reject) => {
@@ -6,7 +18,7 @@ export function getImageFromDallE(keywords: string[], category?: string) {
         const data = await axios.post<{ data: { url: string }[] }>(
           'https://api.openai.com/v1/images/generations',
           {
-            prompt: `3d art of a very very very cute ${keyword} squishmallow design plush toy. 3d render on a colourful gradient background, deep shadows, studio photography`,
+            prompt: getRandomPrompt(keyword),
             n: 1,
             size: '256x256',
           },
