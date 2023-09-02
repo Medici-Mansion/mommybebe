@@ -11,11 +11,14 @@ interface Response<T> {
 export type GetCategoriesResponse = Response<
   Pick<InferSelectModel<typeof Category, { dbColumnNames: true }>, 'name'>[]
 >
+
+export type ImageByCategory = Omit<
+  InferSelectModel<typeof Image, { dbColumnNames: true }>,
+  'category_id'
+>
+
 export type getImageByCategoryResponse = Response<
   InferSelectModel<typeof Category, { dbColumnNames: true }> & {
-    images: Omit<
-      InferSelectModel<typeof Image, { dbColumnNames: true }>,
-      'category_id'
-    >[]
+    images: ImageByCategory[]
   }
 >

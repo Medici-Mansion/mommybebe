@@ -1,4 +1,5 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { NextRequest } from 'next/server'
+import fetch from 'node-fetch'
 import * as z from 'zod'
 type ResponseArgs<T = unknown> = Partial<{ data: T; error: any; ok: boolean }>
 
@@ -36,4 +37,10 @@ export async function checkAndSafeParseToBody<T extends z.ZodRawShape>(
       data: validation.data,
     }
   }
+}
+
+export const imageToBufferFromCDN = async (url: string) => {
+  // openai에서 node-fetch blob type을 지원하기 때문에 사용
+  const data = await fetch(url)
+  return data
 }

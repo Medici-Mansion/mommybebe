@@ -15,3 +15,8 @@ export const completeLearn = z.object({
   categoryName: z.string(),
   words: z.array(z.object({ id: z.string(), isCorrect: z.boolean() })),
 })
+
+export const variationImage = z.object({
+  categoryName: z.string(),
+  images: z.array(z.string()),
+})

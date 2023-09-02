@@ -1,0 +1,26 @@
+.container {
+  background-color: #f9eaf9;
+  padding: 3.6vh 0vh;
+  height: 100vh;
+}
+
+.title {
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: #a5a5a5;
+  text-align: center;
+}
+
+.subtitle {
+  font-size: 3rem;
+  font-weight: 400;
+  color: #d770d7;
+  text-align: center;
+}
+
+.formWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,0 +1,26 @@
+.learningContainer {
+  height: 100vh;
+  background-color: #ffe8cc;
+  padding: 3.6vh 0vh;
+}
+
+.title {
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: #a5a5a5;
+  text-align: center;
+}
+
+.subtitle {
+  font-size: 3rem;
+  font-weight: 400;
+  color: #ff8d01;
+  text-align: center;
+}
+
+.selectFormWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
