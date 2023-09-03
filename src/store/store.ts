@@ -1,11 +1,16 @@
 import create from 'zustand'
 
 type State = {
-  correctAnswer: string
-  setCorrectAnswer: (value: string) => void
+  correctAnswers: string[]
+  localTranscripts: (string | undefined)[]
+  setCorrectAnswers: (values: string[]) => void
+  setLocalTranscripts: (values: (string | undefined)[]) => void
 }
 
 export const useStore = create<State>((set) => ({
-  correctAnswer: '',
-  setCorrectAnswer: (value: string) => set({ correctAnswer: value }),
+  correctAnswers: [],
+  localTranscripts: [],
+  setCorrectAnswers: (values: string[]) => set({ correctAnswers: values }),
+  setLocalTranscripts: (values: (string | undefined)[]) =>
+    set({ localTranscripts: values }),
 }))

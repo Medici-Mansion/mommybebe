@@ -9,7 +9,7 @@ import { useStore } from '@/store/store'
 
 const ScoreForm = () => {
   const [isSpeakerClicked, setIsSpeakerClicked] = useState(false)
-  const { correctAnswer } = useStore()
+  const { correctAnswers, localTranscripts } = useStore()
 
   // 스피커 코드
   const { isReady, speak, getVoicesByLang } = useSpeak({
@@ -40,7 +40,8 @@ const ScoreForm = () => {
           </button>
           <p className={styles.answer}>{image.word}</p>
           <div>
-            {image.word === correctAnswer ? (
+            {localTranscripts[index]?.toLowerCase() ===
+            correctAnswers[index]?.toLowerCase() ? (
               <Image src="/correct.svg" width={48} height={48} alt="정답" />
             ) : (
               <Image src="/wrong.svg" width={48} height={48} alt="오답" />

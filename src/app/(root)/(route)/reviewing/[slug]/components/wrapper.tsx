@@ -17,7 +17,12 @@ const Wrapper = ({ category }: { category: string }) => {
   const [isSpeakerClicked, setIsSpeakerClicked] = useState(false)
   const [timerId, setTimerId] = useState<NodeJS.Timeout | null>(null)
   const [localTranscript, setLocalTranscript] = useState<string | undefined>()
-  const { correctAnswer, setCorrectAnswer } = useStore()
+  const {
+    correctAnswers,
+    setCorrectAnswers,
+    localTranscripts,
+    setLocalTranscripts,
+  } = useStore()
 
   const { data } = useQuery(
     WordsApi.WordsQueries.queries.getCategories(category),
@@ -85,11 +90,16 @@ const Wrapper = ({ category }: { category: string }) => {
         finalTranscript = finalTranscript.slice(0, -1)
       }
 
-      setLocalTranscript(finalTranscript)
+      // 현재 progress에 따른 localTranscript 설정
+      const updatedTranscripts = [...localTranscripts]
+      updatedTranscripts[progress - 1] = finalTranscript
+      setLocalTranscripts(updatedTranscripts)
     } else {
-      setLocalTranscript(undefined)
+      const updatedTranscripts = [...localTranscripts]
+      updatedTranscripts[progress - 1] = undefined
+      setLocalTranscripts(updatedTranscripts)
     }
-  }, [transcript.text])
+  }, [transcript.text, progress])
 
   useEffect(() => {
     setLocalTranscript(undefined)
@@ -97,9 +107,11 @@ const Wrapper = ({ category }: { category: string }) => {
 
   useEffect(() => {
     if (data?.data) {
-      setCorrectAnswer(data?.data.images[progress - 1]?.word)
+      const updatedAnswers = [...correctAnswers]
+      updatedAnswers[progress - 1] = data?.data.images[progress - 1]?.word
+      setCorrectAnswers(updatedAnswers)
     }
-  }, [data, progress, setCorrectAnswer])
+  }, [data, progress])
 
   return (
     <div className={styles.cardContainer}>
@@ -118,8 +130,8 @@ const Wrapper = ({ category }: { category: string }) => {
         {data?.data && (
           <TestCard
             image={data?.data.images[progress - 1]}
-            transcript={localTranscript}
-            correctAnswer={correctAnswer}
+            transcript={localTranscripts[progress - 1]}
+            correctAnswer={correctAnswers[progress - 1]}
           />
         )}
       </div>
