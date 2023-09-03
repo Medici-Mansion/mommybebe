@@ -13,7 +13,7 @@ const Wrapper = ({ category }: { category: string }) => {
   const [progress, setProgress] = useState(1)
   const [isSpeakerClicked, setIsSpeakerClicked] = useState(false)
   const { data } = useQuery(
-    WordsApi.WordsQueries.queries.getCategories(category),
+    WordsApi.WordsQueries.queries.getImageByCategory(category),
   )
   const router = useRouter()
 

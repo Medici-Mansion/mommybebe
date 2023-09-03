@@ -3,38 +3,31 @@
 import Image from 'next/image'
 
 import styles from './test-card.module.css'
-import { ImageByCategory } from '@/@types/api'
 
 interface WordCardProps {
-  image?: ImageByCategory
-  transcript?: string
-  correctAnswer?: string
+  imagePath: string
+  word?: string
+  isCorrect: boolean
 }
 
-const TestCard = ({ image, transcript, correctAnswer }: WordCardProps) => {
-  let answerStyle = {}
-
-  if (transcript && correctAnswer) {
-    answerStyle =
-      transcript.toLowerCase() === correctAnswer.toLowerCase()
-        ? { color: '#20D96B' }
-        : { color: '#FF3932' }
-  }
-
-  return image ? (
+const TestCard = ({ imagePath, word, isCorrect }: WordCardProps) => {
+  return imagePath ? (
     <div className={styles.cardContainer}>
       <div className={styles.card}>
         <Image
-          src={image?.original_url}
+          src={imagePath}
           width={334}
           height={310}
           placeholder="blur"
-          blurDataURL={image?.original_url}
+          blurDataURL={imagePath}
           alt="이미지"
         />
       </div>
-      <div className={styles.word} style={answerStyle}>
-        {transcript}
+      <div
+        className={styles.word}
+        style={{ color: isCorrect ? '#20D96B' : '#FF3932' }}
+      >
+        {word}
       </div>
     </div>
   ) : null

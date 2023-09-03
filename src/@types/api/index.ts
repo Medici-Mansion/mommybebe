@@ -17,8 +17,19 @@ export type ImageByCategory = Omit<
   'category_id'
 >
 
+export type LearnedByCategory = Pick<
+  InferSelectModel<typeof Image, { dbColumnNames: true }>,
+  'id' | 'is_correct' | 'word' | 'createdAt'
+>
+
 export type getImageByCategoryResponse = Response<
   InferSelectModel<typeof Category, { dbColumnNames: true }> & {
     images: ImageByCategory[]
+  }
+>
+
+export type getLearndByCategoryResponse = Response<
+  InferSelectModel<typeof Category, { dbColumnNames: true }> & {
+    images: LearnedByCategory[]
   }
 >

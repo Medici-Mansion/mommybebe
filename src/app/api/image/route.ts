@@ -46,8 +46,7 @@ export async function GET(req: NextRequest) {
         from
           "image" "i"
         where
-          "i"."review_url" is null
-          and "i".category_id = c.id) as "image_with_rownum"
+          "i".category_id = c.id) as "image_with_rownum"
       where
         "image_with_rownum".ROWNUM = 1 limit 5) images)
     from category c  where c.name = ${category} limit 1`)
