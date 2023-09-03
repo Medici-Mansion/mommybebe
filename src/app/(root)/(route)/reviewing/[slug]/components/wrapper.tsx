@@ -135,6 +135,7 @@ const Wrapper = ({ category }: { category: string }) => {
         <button
           className={`${styles.buttonWrapper} ${styles.secondButton}`}
           onClick={handleNextClick}
+          disabled={!localTranscript}
         >
           <Image src="/Arrow_Right.svg" width={65} height={65} alt="next" />
         </button>
