@@ -19,7 +19,7 @@ const Wrapper = ({ category }: { category: string }) => {
   const answerMap = useRef(new Map<string, boolean>()).current
 
   const { data } = useQuery(
-    WordsApi.WordsQueries.queries.getImageByCategory(category),
+    WordsApi.WordsQueries.queries.getReviewImageByCategory(category),
   )
 
   const { mutate: completeLearn } = useMutation(
@@ -112,8 +112,8 @@ const Wrapper = ({ category }: { category: string }) => {
   )
 
   const currentImage = useMemo(
-    () => data?.data.images[progress - 1],
-    [data?.data.images, progress],
+    () => data?.data[progress - 1],
+    [data?.data, progress],
   )
 
   return (
@@ -132,7 +132,7 @@ const Wrapper = ({ category }: { category: string }) => {
       <div className={styles.wordCardWrapper}>
         {currentImage ? (
           <TestCard
-            imagePath={currentImage.review_url!}
+            imagePath={currentImage.reviewUrl || currentImage.originalUrl}
             word={speakedText}
             isCorrect={currentImage.word === speakedText}
           />

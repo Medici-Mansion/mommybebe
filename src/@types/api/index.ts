@@ -33,3 +33,5 @@ export type getLearndByCategoryResponse = Response<
     images: LearnedByCategory[]
   }
 >
+
+export type makeVariationResponse = Response<InferSelectModel<typeof Image>[]>

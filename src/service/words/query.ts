@@ -15,14 +15,14 @@ const WordsQueries = {
       return {
         queryKey: ['images', 'review', category],
         //@ts-ignore
-        queryFn: () => {
-          return WordsService.getImageByCategory(category).then(
-            (imagesByCategory) =>
-              WordsService.getReviewImageByCategory({
-                categoryName: category,
-                images: imagesByCategory.data.images.map((i) => i.id),
-              }),
-          )
+        queryFn: async () => {
+          const imagesByCategory =
+            await WordsService.getImageByCategory(category)
+
+          return WordsService.getReviewImageByCategory({
+            categoryName: category,
+            images: imagesByCategory.data.images.map((i) => i.id),
+          })
         },
       } satisfies QueryType<getImageByCategoryResponse>
     },
