@@ -30,7 +30,6 @@ const PrefetchQuery = async <
 >) => {
   try {
     const queryClient = getQueryClient()
-
     const queriesList = queries.map((query) => queryClient.prefetchQuery(query))
     await Promise.all(queriesList)
     const dehydratedState = dehydrate(queryClient)

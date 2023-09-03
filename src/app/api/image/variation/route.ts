@@ -41,39 +41,44 @@ export async function POST(req: NextRequest) {
       .select()
       .from(Image)
       .where(eq(Image.categoryId, foundCategory[0].id))
-      .where(isNull(Image.reviewUrl))
+      .where(isNull(Image.isLearned))
       .where(inArray(Image.id, images))
 
     const genBufferPromises = foundImages.map((foundImage) =>
-      imageToBufferFromCDN(foundImage.originalUrl).then(async (buffer) =>
-        uploadImage(
-          await getImageVariation({
+      foundImage.reviewUrl
+        ? {
             id: foundImage.id,
-            image: buffer,
-            word: foundImage.word,
-          }),
-        ),
-      ),
+            url: foundImage.reviewUrl,
+            secure_url: foundImage.reviewUrl,
+            keyword: foundImage.word,
+          }
+        : imageToBufferFromCDN(foundImage.originalUrl).then(async (buffer) =>
+            uploadImage(
+              await getImageVariation({
+                id: foundImage.id,
+                image: buffer,
+                word: foundImage.word,
+              }),
+            ),
+          ),
     )
 
     const changedImage = await Promise.all(genBufferPromises)
 
-    const updatePromises = changedImage.map((imageObject) =>
-      db
-        .update(Image)
-        .set({
-          reviewUrl: imageObject.url,
-        })
-        .where(eq(Image.id, imageObject.id!))
-        .returning({
-          word: Image.word,
-          reviewUrl: Image.reviewUrl,
-        })
-        .then((r) => r[0]),
+    const updatePromises = changedImage.map((imageObject, changedIndex) =>
+      foundImages[changedIndex].reviewUrl
+        ? foundImages[changedIndex]
+        : db
+            .update(Image)
+            .set({
+              reviewUrl: imageObject.secure_url,
+            })
+            .where(eq(Image.id, imageObject.id!))
+            .returning()
+            .then((r) => r[0]),
     )
 
     const response = await Promise.all(updatePromises)
-
     return NextResponse.json(
       handler({
         data: response,

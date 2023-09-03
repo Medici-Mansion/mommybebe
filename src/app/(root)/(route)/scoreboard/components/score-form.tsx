@@ -5,11 +5,10 @@ import styles from './score-form.module.css'
 import WordsApi from '@/service/words'
 import useSpeak from '@/hooks/use-speak'
 import Image from 'next/image'
-import { useStore } from '@/store/store'
+import LearnQueries from '@/service/learn/query'
 
 const ScoreForm = () => {
   const [isSpeakerClicked, setIsSpeakerClicked] = useState(false)
-  const { correctAnswers, localTranscripts } = useStore()
 
   // 스피커 코드
   const { isReady, speak, getVoicesByLang } = useSpeak({
@@ -18,9 +17,7 @@ const ScoreForm = () => {
     },
   })
 
-  const { data } = useQuery(
-    WordsApi.WordsQueries.queries.getCategories('Animal'),
-  )
+  const { data } = useQuery(LearnQueries.queries.getLearndByCategory('Animal'))
 
   const handleSpeak = (word: string) => {
     if (isReady) {
@@ -40,8 +37,7 @@ const ScoreForm = () => {
           </button>
           <p className={styles.answer}>{image.word}</p>
           <div>
-            {localTranscripts[index]?.toLowerCase() ===
-            correctAnswers[index]?.toLowerCase() ? (
+            {image.is_correct ? (
               <Image src="/correct.svg" width={48} height={48} alt="정답" />
             ) : (
               <Image src="/wrong.svg" width={48} height={48} alt="오답" />

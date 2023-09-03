@@ -4,11 +4,26 @@ import WordsService from './service'
 
 const WordsQueries = {
   queries: {
-    getCategories(category: string) {
+    getImageByCategory(category: string) {
       return {
-        queryKey: ['categories', category],
+        queryKey: ['images', category],
         //@ts-ignore
         queryFn: () => WordsService.getImageByCategory(category),
+      } satisfies QueryType<getImageByCategoryResponse>
+    },
+    getReviewImageByCategory(category: string) {
+      return {
+        queryKey: ['images', 'review', category],
+        //@ts-ignore
+        queryFn: () => {
+          return WordsService.getImageByCategory(category).then(
+            (imagesByCategory) =>
+              WordsService.getReviewImageByCategory({
+                categoryName: category,
+                images: imagesByCategory.data.images.map((i) => i.id),
+              }),
+          )
+        },
       } satisfies QueryType<getImageByCategoryResponse>
     },
   },

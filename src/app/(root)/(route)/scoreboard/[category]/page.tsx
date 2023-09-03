@@ -1,6 +1,6 @@
 'use client'
 
-import ScoreForm from './components/score-form'
+import ScoreForm from '../components/score-form'
 import styles from './page.module.css'
 import { useRouter } from 'next/navigation'
 
