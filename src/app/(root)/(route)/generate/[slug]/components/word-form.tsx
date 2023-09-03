@@ -2,15 +2,14 @@
 import styles from './word-form.module.css'
 import { postImageBody } from '@/validation/image.validation'
 import { zodResolver } from '@hookform/resolvers/zod'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef } from 'react'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
-import { AnimatePresence, motion } from 'framer-motion'
-import { XCircle } from 'lucide-react'
-import { useQuery } from '@tanstack/react-query'
-import CategoryQueries from '@/service/category/query'
+import { useQueryClient } from '@tanstack/react-query'
+
 import { useRouter } from 'next/navigation'
 import { instance } from '@/service'
+import WordsApi from '@/service/words'
 
 interface WordFormProps {
   defaultValues?: Partial<(typeof postImageBody)['_input']>
@@ -21,21 +20,26 @@ const MAX_WORD_COUNT = 5
 const WordForm = ({ defaultValues }: WordFormProps) => {
   const router = useRouter()
   const isDeleted = useRef(false)
-  const [wordCount, setWordCount] = useState(1)
   const { handleSubmit, register, getValues, setFocus, setValue, setError } =
     useForm<(typeof postImageBody)['_input']>({
       resolver: zodResolver(postImageBody),
       defaultValues,
     })
 
+  const queryClient = useQueryClient()
   const onValid = async (data: z.infer<typeof postImageBody>) => {
     const { categoryName, words } = data
     const filteredWords = words.filter((item) => !!item)
     // console.log(data)
     try {
-      const response = await instance.post('api/image', {
+      await instance.post('api/image', {
         categoryName: categoryName,
         words: filteredWords,
+      })
+      queryClient.invalidateQueries({
+        queryKey:
+          WordsApi.WordsQueries.queries.getImageByCategory(categoryName)
+            .queryKey,
       })
       router.push(`/`)
     } catch (error) {
@@ -45,11 +49,6 @@ const WordForm = ({ defaultValues }: WordFormProps) => {
       })
     }
   }
-
-  useEffect(() => {
-    // 작업 뒤로 미루기
-    setTimeout(() => setFocus(`words.${wordCount - 1}`))
-  }, [setFocus, wordCount])
 
   return (
     <form onSubmit={handleSubmit(onValid)}>

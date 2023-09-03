@@ -10,13 +10,7 @@ type Props = {
 }
 
 const WordCardpage = ({ params }: Props) => {
-  return (
-    <PrefetchQuery
-      queries={[WordsApi.WordsQueries.queries.getImageByCategory(params.slug)]}
-    >
-      <Wrapper category={params.slug} />
-    </PrefetchQuery>
-  )
+  return <Wrapper category={params.slug} />
 }
 
 export default WordCardpage
