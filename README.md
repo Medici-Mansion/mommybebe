@@ -26,7 +26,10 @@ This application was created using the following libraries and frameworks.
 
 ![image](https://github.com/Medici-Mansion/sullivan-ai/assets/106373580/43435257-839e-4a0c-8dd3-c80c22debb73)
 
-The idea began with the mission of having children study English words in a three-dimensional way. When children study through real objects, they sometimes encounter objects from various perspectives with greater curiosity and observation than adults. However, in an indoor study environment using word cards, there are some limitations due to its special characteristics. In particular, through card games in physical form, children are exposed to the picture represented by the word as a 2D image drawn in only one style. To solve these problems, Sullivan-AI was designed based on Open-AI's deep learning model and early childhood pedagogy.
+The idea began with the mission of having children study English words in a three-dimensional way. When children study through real objects, they sometimes encounter objects from various perspectives with greater curiosity and observation than adults. 
+<br/>
+However, in an indoor study environment using word cards, there are some limitations due to its special characteristics. 
+In particular, through card games in physical form, children are exposed to the picture represented by the word as a 2D image drawn in only one style. To solve these problems, Sullivan-AI was designed based on Open-AI's deep learning model and early childhood pedagogy.
 
 <br />
 
