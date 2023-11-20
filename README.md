@@ -13,6 +13,14 @@ Language learning word game service for infants using image cards that are gener
 
 This application was created using the following libraries and frameworks. 
 
+### Backend
+
+![drizzle_orm](https://img.shields.io/badge/drizzle_orm-2320232a?style=for-the-badge&logo=drizzle-orm&logoColor=white)
+<img src="https://img.shields.io/badge/openai-412991?style=for-the-badge&logo=openai&logoColor=white">
+<img src="https://img.shields.io/badge/postgresql-4169E1?style=for-the-badge&logo=postgresql&logoColor=white">
+<img src="https://img.shields.io/badge/supabase-3FCF8E?style=for-the-badge&logo=supabase&logoColor=white">
+
+
 ### Frontend
 
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
