@@ -69,6 +69,13 @@ The pictures learned in step 1 are tested with similar, but slightly different i
 
 ![image](https://github.com/Medici-Mansion/sullivan-ai/assets/106373580/37115892-5fed-4a28-a9ef-e7f3e0375143)
 
-Audio-visual review step while checking incorrect and correct answers
+In the review stage, the words learned in the learning stage are transformed by the DALL-E variation model, and the reproduced images appear. When a user (baby) looks at a picture and says a word, it extracts a word converted from voice by Whisper AI. If it matches the word in the image, the correct answer is indicated. Finally, the user may check the word and wrong words that fits the score.
 
+
+<br />
+
+## Service Demo Video
+[![Video Label](http://img.youtube.com/vi/j10wJP651qE/0.jpg)](https://www.youtube.com/watch?v=j10wJP651qE)
+
+Click the video then you can see this service Demo
 
